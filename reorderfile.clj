@@ -18,7 +18,9 @@
 (defn reorder-buffer [buffer-content]
   (future
     (let [reordered-content (reorder-lines buffer-content)]
-      (cloel/elisp-eval-async "reorder-file-confirm-replace" reordered-content))))
+      (if (= reordered-content buffer-content)
+        (cloel/elisp-show-message "The buffer content unchanged after sorting.")
+        (cloel/elisp-eval-async "reorder-file-confirm-replace" reordered-content)))))
 
 (defn app-handle-client-connected [client-id]
   (cloel/elisp-eval-async "reorder-file-start-process-confirm" (str client-id)))
