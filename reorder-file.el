@@ -100,6 +100,7 @@
   (let ((buffer-content (buffer-string)))
     (cloel-reorder-file-call-async "reorder-buffer" buffer-content)))
 
+;;;###autoload
 (defun reorder-file ()
   "Reorder the numbered lines in the current buffer."
   (interactive)
