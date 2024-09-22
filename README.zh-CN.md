@@ -18,4 +18,4 @@ reorder-file 是一个 Emacs 插件， 分析 Buffer 的内容， 并自动重�
    ```
 
 ## 使用
-M-x reorder-file
+M-x `reorder-file`

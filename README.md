@@ -18,6 +18,4 @@ Since this plugin is developed based on [cloel](https://github.com/manateelazyca
    ```
 
 ## Usage
-M-x reorder-file
-
-This translation maintains the structure and content of the original Chinese text, adapting it to English while preserving the technical terms and commands.
+M-x `reorder-file`
