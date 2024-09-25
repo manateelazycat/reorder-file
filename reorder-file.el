@@ -84,11 +84,9 @@
 
 
 ;;; Code:
-(defvar reorder-file-clj-file
-  (expand-file-name "reorderfile.clj"
-                    (file-name-directory load-file-name)))
+(defvar reorder-file-clj-project (file-name-directory load-file-name))
 
-(cloel-register-app "reorder-file" reorder-file-clj-file)
+(cloel-register-app "reorder-file" reorder-file-clj-project "run-by-cloel")
 
 (defun reorder-file-start-process-confirm (client-id)
   "Confirm process start and send reorder request."
@@ -98,7 +96,7 @@
 (defun reorder-file-send-request ()
   "Send reorder request to Clojure process."
   (let ((buffer-content (buffer-string)))
-    (cloel-reorder-file-call-async "reorder-buffer" buffer-content)))
+    (cloel-reorder-file-call-async "reorderfile/reorder-buffer" buffer-content)))
 
 ;;;###autoload
 (defun reorder-file ()

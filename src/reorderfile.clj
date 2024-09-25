@@ -27,4 +27,5 @@
 
 (alter-var-root #'cloel/handle-client-connected (constantly app-handle-client-connected))
 
-(cloel/start-server (Integer/parseInt (first *command-line-args*)))
+(defn -main [& args]
+  (cloel/start-server (Integer/parseInt (first args))))
