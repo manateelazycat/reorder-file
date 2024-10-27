@@ -18,4 +18,8 @@ reorder-file 是一个 Emacs 插件， 分析 Buffer 的内容， 并自动重�
    ```
 
 ## 使用
-M-x `reorder-file`
+M-x `reorder-file`, 支持当前 buffer 和选中区域
+
+如果当前区域的文本是以数字开头的， 就会对内容重排每行前面的序号。
+
+如果当前区域的文本是其他类型的， 会按照 Alpha 顺序排列所有行。

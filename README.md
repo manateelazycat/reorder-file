@@ -18,4 +18,8 @@ Since this plugin is developed based on [cloel](https://github.com/manateelazyca
    ```
 
 ## Usage
-M-x `reorder-file`
+M-x `reorder-file` supports both current buffer and selected region
+
+If the text in the current region starts with numbers, it will reorder the numbers at the beginning of each line.
+
+If the text in the current region is of other types, it will sort all lines in alphabetical order.

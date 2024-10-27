@@ -95,8 +95,10 @@
 
 (defun reorder-file-send-request ()
   "Send reorder request to Clojure process."
-  (let ((buffer-content (buffer-string)))
-    (cloel-reorder-file-call-async "reorderfile/reorder-buffer" buffer-content)))
+  (let ((sort-content (if (region-active-p)
+                          (buffer-substring-no-properties (region-beginning) (region-end))
+                        (buffer-string))))
+    (cloel-reorder-file-call-async "reorderfile/reorder-buffer" sort-content)))
 
 ;;;###autoload
 (defun reorder-file ()
@@ -113,10 +115,15 @@
 (defun reorder-file-confirm-replace (reordered-content)
   "Confirm with the user whether to replace the buffer content."
   (when (yes-or-no-p "Replace buffer content with reordered text? ")
-    (with-current-buffer (current-buffer)
-      (erase-buffer)
-      (insert reordered-content)
-      (goto-char (point-min)))
+    (if (region-active-p)
+        (let ((start (region-beginning)))
+          (kill-region (region-beginning) (region-end))
+          (insert reordered-content)
+          (goto-char start))
+      (with-current-buffer (current-buffer)
+        (erase-buffer)
+        (insert reordered-content)
+        (goto-char (point-min))))
     (switch-to-buffer (current-buffer))
     (message "Buffer content has been replaced with reordered text.")))
 
