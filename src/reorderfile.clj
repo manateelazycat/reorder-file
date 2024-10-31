@@ -13,10 +13,11 @@
     [numbered-lines reordered-lines]))
 
 (defn reorder-alpha-lines
-  "Sort lines alphabetically"
+  "Sort non-empty lines alphabetically"
   [text]
   (let [lines (str/split-lines text)
-        sorted-lines (sort-by str/lower-case lines)]
+        non-empty-lines (filter #(not (str/blank? %)) lines) ; Filter out empty lines
+        sorted-lines (sort-by str/lower-case non-empty-lines)]
     (str/join "\n" sorted-lines)))
 
 (defn reorder-lines [text]
